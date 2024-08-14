@@ -1,3 +1,5 @@
+import { FilterMetadata } from "primeng/api";
+
 export interface Pagination {
     current_page:   number;
     data:           Campaigns[];
@@ -65,4 +67,8 @@ export interface Link {
     url:    null | string;
     label:  string;
     active: boolean;
+}
+
+export interface LazyLoadFilters {
+    [s: string]: FilterMetadata | FilterMetadata[] | undefined;
 }
