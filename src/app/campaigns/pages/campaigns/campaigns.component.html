@@ -54,30 +54,37 @@
             field="id"
             [showClearButton]="false"
             placeholder="ID"
+            (input)="onFilterChange($event, 'id')"
           />
         </th>
         <th>
           <p-columnFilter
+            #campaignNameFilter
             type="text"
             field="campaign_name"
             [showClearButton]="false"
             placeholder="Campaign"
+            (input)="onFilterChange($event, 'campaign_name')"
           />
         </th>
         <th>
           <p-columnFilter
+            #startDateFilter
             type="text"
             field="start_date"
             [showClearButton]="false"
             placeholder="Start date"
+            (input)="onFilterChange($event, 'start_date')"
           />
         </th>
         <th>
           <p-columnFilter
+            #endDateFilter
             type="text"
             field="end_date"
             [showClearButton]="false"
             placeholder="End date"
+            (input)="onFilterChange($event, 'end_date')"
           />
         </th>
       </tr>

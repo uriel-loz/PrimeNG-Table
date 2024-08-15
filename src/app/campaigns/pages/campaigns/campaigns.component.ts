@@ -1,8 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Campaigns, LazyLoadFilters } from '../../interfaces/campaings.interface';
 import { CampaignsService } from '../../services/campaigns.service';
-import { finalize } from 'rxjs';
+import { debounceTime, finalize, Observable, Subject } from 'rxjs';
 import { TableLazyLoadEvent } from 'primeng/table';
+import { FilterMetadata } from 'primeng/api';
 
 @Component({
   templateUrl: './campaigns.component.html',
@@ -15,10 +16,30 @@ export class CampaignsComponent implements OnInit {
   public last: number = 0;
   public loading!: boolean;
   private campaignService = inject(CampaignsService);
+  private filterSubject: Subject<{column: string, value: string}> = new Subject();
+  public filters$: Observable<{column: string, value: string}> = this.filterSubject.asObservable();
+  private currentFilters: {[key: string]: FilterMetadata} = {};
   
-
   ngOnInit(): void{
     this.loading = true;
+    this.initializerFilterSubject();
+  }
+
+  initializerFilterSubject(): void {
+    this.filters$.pipe(
+      debounceTime(500)
+    ).subscribe(({column, value}) => {
+      this.currentFilters[column] = {value};
+      
+      this.loadCampaigns({filters: this.currentFilters});
+    });
+  }
+
+  onFilterChange(event: Event, column: string): void {
+    const inputElement = event.target as HTMLInputElement;
+    const value = inputElement.value;
+
+    this.filterSubject.next({column, value});
   }
 
   applyFilter(filters: LazyLoadFilters): string{
@@ -72,5 +93,4 @@ export class CampaignsComponent implements OnInit {
       this.last = campaigns.to;
     });
   }
-
 }
