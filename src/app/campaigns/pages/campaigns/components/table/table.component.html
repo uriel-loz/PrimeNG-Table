@@ -1,0 +1,83 @@
+<p-table
+    (onLazyLoad)="loadCampaigns($event)"
+    [lazy]="true"
+    [loading]="loading"
+    [paginator]="true"
+    [rows]="10"
+    [rowsPerPageOptions]="[5, 10, 20, 50, 100, totalRecords]"
+    [showCurrentPageReport]="true"
+    [sortOrder]="1"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [totalRecords]="totalRecords"
+    [value]="campaigns"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    selectionMode="single"
+    sortField="campaign_name"
+    styleClass="p-datatable-gridlines"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id" style="width: 20%">
+          ID <p-sortIcon field="id" />
+        </th>
+        <th pSortableColumn="campaign_name" style="width: 20%">
+          Campaign <p-sortIcon field="campaign_name" />
+        </th>
+        <th pSortableColumn="start_date" style="width: 20%">
+          Start date <p-sortIcon field="start_date" />
+        </th>
+        <th pSortableColumn="end_date" style="width: 20%">
+          End date <p-sortIcon field="end_date" />
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="id"
+            [showClearButton]="false"
+            placeholder="ID"
+            (input)="onFilterChange($event, 'id')"
+          />
+        </th>
+        <th>
+          <p-columnFilter
+            #campaignNameFilter
+            type="text"
+            field="campaign_name"
+            [showClearButton]="false"
+            placeholder="Campaign"
+            (input)="onFilterChange($event, 'campaign_name')"
+          />
+        </th>
+        <th>
+          <p-columnFilter
+            #startDateFilter
+            type="text"
+            field="start_date"
+            [showClearButton]="false"
+            placeholder="Start date"
+            (input)="onFilterChange($event, 'start_date')"
+          />
+        </th>
+        <th>
+          <p-columnFilter
+            #endDateFilter
+            type="text"
+            field="end_date"
+            [showClearButton]="false"
+            placeholder="End date"
+            (input)="onFilterChange($event, 'end_date')"
+          />
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-campaign>
+      <tr>
+        <td>{{ campaign.id }}</td>
+        <td>{{ campaign.campaign_name }}</td>
+        <td>{{ campaign.start_date }}</td>
+        <td>{{ campaign.end_date }}</td>
+      </tr>
+    </ng-template>
+  </p-table>

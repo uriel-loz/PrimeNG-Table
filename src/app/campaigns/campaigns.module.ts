@@ -7,6 +7,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 import { PanelModule } from 'primeng/panel';
+import { TableComponent } from './pages/campaigns/components/table/table.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { PanelModule } from 'primeng/panel';
     PanelModule,
   ],
   declarations: [
-    CampaignsComponent
+    CampaignsComponent,
+    TableComponent
   ]
 })
 export class CampaignsModule { }
