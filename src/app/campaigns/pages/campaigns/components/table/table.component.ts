@@ -16,6 +16,7 @@ export class TableComponent implements OnInit {
   public first: number = 0;
   public last: number = 0;
   public loading!: boolean;
+  public sortField: string = 'campaign_name';
   private campaignService = inject(CampaignsService);
   private filterSubject: Subject<{column: string, value: string}> = new Subject();
   public filters$: Observable<{column: string, value: string}> = this.filterSubject.asObservable();
@@ -80,7 +81,7 @@ export class TableComponent implements OnInit {
     let filterParams:string = '';
     const filters:LazyLoadFilters | undefined = event.filters;
 
-    let sortField:string | string[] = (event.sortField ?? 'id');
+    let sortField:string | string[] = (event.sortField ?? this.sortField);
     let sortOrder:number = (event.sortOrder ?? 1);
 
     if (filters) 

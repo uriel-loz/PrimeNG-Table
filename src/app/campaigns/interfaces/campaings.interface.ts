@@ -19,29 +19,8 @@ export interface Pagination {
 export interface Campaigns {
     id:                      number;
     campaign_name:           string;
-    version:                 string;
-    temporality:             string;
     start_date:              Date;
     end_date:                Date;
-    url_commercial_proposal: null | string;
-    url_contract:            null | string;
-    rebate:                  Rebate;
-    payment_type:            PaymentType;
-    client_id:               number;
-    created_at:              Date;
-    updated_at:              Date;
-    deleted_at:              null;
-    manager_cdmx_id:         number;
-    manager_internal_id:     number;
-    manager_design_id:       null;
-    partial_temporality:     null;
-    form_id:                 null;
-    notification_install:    number;
-    periodically:            Periodically;
-    operation_date:          null;
-    type:                    CampaignAim;
-    campaign_aim:            CampaignAim;
-    admin_manager_id:        null;
 }
 
 export enum CampaignAim {

@@ -8,6 +8,9 @@ import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 import { PanelModule } from 'primeng/panel';
 import { TableComponent } from './pages/campaigns/components/table/table.component';
+import { AddComponent } from './pages/campaigns/components/add/add.component';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   imports: [
@@ -18,10 +21,13 @@ import { TableComponent } from './pages/campaigns/components/table/table.compone
     ButtonModule,
     ToolbarModule,
     PanelModule,
+    DialogModule,
+    InputTextModule
   ],
   declarations: [
     CampaignsComponent,
-    TableComponent
+    AddComponent,
+    TableComponent,
   ]
 })
 export class CampaignsModule { }

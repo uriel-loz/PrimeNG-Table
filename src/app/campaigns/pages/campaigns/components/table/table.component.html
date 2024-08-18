@@ -12,7 +12,7 @@
     [value]="campaigns"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     selectionMode="single"
-    sortField="campaign_name"
+    [sortField]="sortField"
     styleClass="p-datatable-gridlines"
   >
     <ng-template pTemplate="header">
