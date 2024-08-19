@@ -1,21 +1,63 @@
 <p-button severity="success" label="New" icon="pi pi-plus" class="pl-2" (onClick)="showDialog()" />
 
 <div class="card flex justify-content-center">
-  <p-dialog header="Edit Profile" [modal]="true" [(visible)]="visible">
+  <p-dialog 
+    header="Edit Profile" 
+    [modal]="true" 
+    [(visible)]="visible" 
+    [style]="{ width: '45rem' }"
+    (onHide)="hideDialog()"
+  >
       <span class="p-text-secondary block mb-5"></span>
-      <div class="formgrid grid">
-        <div class="field col-12 md:col-6">
-              <label for="username">Username</label>
-              <input type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="formgrid grid">
+          <div class="field col-12">
+            <label for="campaign_name" class="block mb-2">Campaign</label>
+            <input 
+              type="text" 
+              pInputText 
+              formControlName="campaign_name" 
+              [style]="{ width: '42rem', padding: '0.55rem' }"
+              placeholder="Campaign name"
+              [ngClass]="{ 'ng-invalid ng-dirty': isValidField('campaign_name') }"
+            />
+            <small class="p-error" *ngIf="isValidField('campaign_name')">
+              Campaign name is required
+            </small>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="start_date" class="block mb-2"> Start date </label>
+            <p-calendar 
+              [showIcon]="true" 
+              placeholder="Start date" 
+              appendTo="body" 
+              dateFormat="yy-mm-dd"
+              formControlName="start_date"
+              [ngClass]="{ 'ng-invalid ng-dirty': isValidField('start_date') }"
+            />
+            <small class="p-error" *ngIf="isValidField('start_date')">
+              Start date is required
+            </small>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="end_date" class="block mb-2">End date</label>
+            <p-calendar 
+              [showIcon]="true" 
+              placeholder="End date" 
+              appendTo="body" 
+              dateFormat="yy-mm-dd"
+              formControlName="end_date"
+              [ngClass]="{ 'ng-invalid ng-dirty': isValidField('end_date') }"
+            />
+            <small class="p-error" *ngIf="isValidField('end_date')">
+              End date is required
+            </small>
+          </div>
         </div>
-        <div class="field col-12 md:col-6">
-          <label for="lastname6">Test</label>
-          <input type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        <div class="flex justify-content-end gap-2">
+            <p-button label="Cancel" severity="secondary" (onClick)="hideDialog()" />
+            <p-button label="Save" type="submit" />
         </div>
-      </div>
-      <div class="flex justify-content-end gap-2">
-          <p-button label="Cancel" severity="secondary" (onClick)="visible = false" />
-          <p-button label="Save" (onClick)="visible = false" />
-      </div>
+      </form>
   </p-dialog>
 </div>

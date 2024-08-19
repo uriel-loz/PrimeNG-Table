@@ -11,6 +11,8 @@ import { TableComponent } from './pages/campaigns/components/table/table.compone
 import { AddComponent } from './pages/campaigns/components/add/add.component';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -22,7 +24,9 @@ import { InputTextModule } from 'primeng/inputtext';
     ToolbarModule,
     PanelModule,
     DialogModule,
-    InputTextModule
+    InputTextModule,
+    CalendarModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     CampaignsComponent,

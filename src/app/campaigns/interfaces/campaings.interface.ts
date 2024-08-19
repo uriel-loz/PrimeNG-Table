@@ -17,7 +17,7 @@ export interface Pagination {
 }
 
 export interface Campaigns {
-    id:                      number;
+    id?:                      number;
     campaign_name:           string;
     start_date:              Date;
     end_date:                Date;
